@@ -53,7 +53,7 @@ node_addressable(Node) ->
   end.
 
 do_send(Process, Name, undefined, Msg) ->
-  case sidejob:new_resource(Name, teleport_node_worker, 1000) of
+  case sidejob:new_resource(Name, teleport_node_worker, 1000, 1) of
     {error, {already_running, _Arg}} ->
       do_send(Process, Name, has_worker(Name), Msg);
     {error, {already_started,_Arg}} ->
